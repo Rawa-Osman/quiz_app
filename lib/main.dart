@@ -1,3 +1,4 @@
+// ignore: avoid_web_libraries_in_flutter
 import 'package:flutter/material.dart';
 
 import './question.dart';
@@ -27,9 +28,19 @@ class _MyAppState extends State<MyApp> {
     print(_questionIndex);
   }
 
-  var questions = [
-    "what's your favorate color?",
-    "what's your favorate animal?",
+  List questions = [
+    {
+      'questionText': "what's your favorate color?",
+      'answers': ['white', 'red', 'black', 'pink'],
+    },
+    {
+      'questionText': "what's your favorate animal?",
+      'answers': ['dog', 'cat', 'snake', 'elephant'],
+    },
+    {
+      'questionText': "what's your favorate instructor?",
+      'answers': ['Rawa', 'Rawa', 'Rawa', 'Rawa'],
+    },
   ];
 
   @override
@@ -41,10 +52,13 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            Question(questions[_questionIndex]),
-            Answer(_answerQuesrion),
-            Answer(_answerQuesrion),
-            Answer(_answerQuesrion),
+            Question(
+              questions[_questionIndex]['questionText'] as String,
+            ),
+            ...(questions[_questionIndex]['answers'] as List<String>)
+                .map((answer) {
+              return Answer(_answerQuesrion, answer);
+            }).toList()
           ],
         ),
       ),
