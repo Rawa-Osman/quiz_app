@@ -4,14 +4,14 @@ class Answer extends StatelessWidget {
   final VoidCallback selectHandler;
   final String answerText;
 
-  Answer(@required this.selectHandler, @required this.answerText);
+  Answer(this.selectHandler, this.answerText);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: Color.fromARGB(255, 250, 245, 238),
-      child: ElevatedButton(
+      color: Colors.blue,
+      child: RaisedButton(
         child: Text(answerText),
         onPressed: selectHandler,
       ),
